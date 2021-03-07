@@ -1,5 +1,10 @@
 import { createContext, useState } from "react";
-import { TokenResponse, TOKEN_POST, User, USER_GET } from "src/adapters";
+import {
+  TokenResponse,
+  TOKEN_POST_FETCH_CONFIG,
+  User,
+  USER_GET_FETCH_CONFIG,
+} from "src/adapters";
 
 export interface UserContextValue {
   user: User;
@@ -15,7 +20,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const [error, setError] = useState(null);
 
   async function getUser(token: string) {
-    const { url, options } = USER_GET(token);
+    const { url, options } = USER_GET_FETCH_CONFIG(token);
 
     const response = await fetch(url, options);
     const user: User = await response.json();
@@ -26,7 +31,7 @@ export const UserProvider: React.FC = ({ children }) => {
   }
 
   async function loginUser(username: string, password: string) {
-    const { url, options } = TOKEN_POST({ username, password });
+    const { url, options } = TOKEN_POST_FETCH_CONFIG({ username, password });
 
     const response = await fetch(url, options);
     const { token }: TokenResponse = await response.json();
