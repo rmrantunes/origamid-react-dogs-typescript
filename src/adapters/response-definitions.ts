@@ -5,7 +5,7 @@ export interface TokenResponse {
   user_nicename: string;
 }
 
-export interface UserResponse {
+export interface User {
   email: string;
   id: number;
   nome: string;
