@@ -24,7 +24,6 @@ export const UserProvider: React.FC = ({ children }) => {
 
     const response = await fetch(url, options);
     const user: User = await response.json();
-    console.log(user);
 
     setUser(user);
     setLogin(true);
