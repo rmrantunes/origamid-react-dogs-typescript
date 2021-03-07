@@ -36,7 +36,7 @@ export function useForm(typeForValidation?: ValidationTypes | false) {
       return false;
     }
     setError(null);
-    return false;
+    return true;
   }
 
   function onChange({ target }: React.ChangeEvent<HTMLInputElement>) {
