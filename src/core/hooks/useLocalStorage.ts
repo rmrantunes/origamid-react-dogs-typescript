@@ -4,13 +4,18 @@ export function useJSONLocalStorage<T = {}>(key: string) {
     return item as T;
   }
 
-  function set(toUpdate: Partial<T>) {
-    const item = JSON.parse(window.localStorage.getItem(key) as string);
+  function merge(toUpdate: Partial<T>) {
+    const item = get()
     const updatedItemAsJSON = JSON.stringify({ ...item, ...toUpdate });
     window.localStorage.setItem(key, updatedItemAsJSON);
   }
 
-  return { get, set };
+  function set(toUpdate: Partial<T>) {
+    const updatedItemAsJSON = JSON.stringify(toUpdate);
+    window.localStorage.setItem(key, updatedItemAsJSON);
+  }
+
+  return { get, set, merge };
 }
 
 export function useLocalStorage(key: string) {
