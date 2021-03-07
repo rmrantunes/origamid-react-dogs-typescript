@@ -5,6 +5,7 @@ import {
   User,
   USER_GET_FETCH_CONFIG,
 } from "src/adapters";
+import { useLocalStorage } from "src/core/hooks";
 
 export interface UserContextValue {
   user: User;
@@ -18,6 +19,8 @@ export const UserProvider: React.FC = ({ children }) => {
   const [login, setLogin] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean | null>(false);
   const [error, setError] = useState(null);
+
+  const localStorageToken = useLocalStorage("token");
 
   async function getUser(token: string) {
     const { url, options } = USER_GET_FETCH_CONFIG(token);
@@ -35,7 +38,8 @@ export const UserProvider: React.FC = ({ children }) => {
     const response = await fetch(url, options);
     const { token }: TokenResponse = await response.json();
 
-    window.localStorage.setItem("token", token);
+    localStorageToken.set(token);
+
     getUser(token);
   }
 
