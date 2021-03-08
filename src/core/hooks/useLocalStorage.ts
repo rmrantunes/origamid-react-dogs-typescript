@@ -4,18 +4,22 @@ export function useJSONLocalStorage<T = {}>(key: string) {
     return item as T;
   }
 
-  function merge(toUpdate: Partial<T>) {
-    const item = get()
-    const updatedItemAsJSON = JSON.stringify({ ...item, ...toUpdate });
-    window.localStorage.setItem(key, updatedItemAsJSON);
-  }
-
   function set(toUpdate: Partial<T>) {
     const updatedItemAsJSON = JSON.stringify(toUpdate);
     window.localStorage.setItem(key, updatedItemAsJSON);
   }
 
-  return { get, set, merge };
+  function merge(toUpdate: Partial<T>) {
+    const item = get();
+    const updatedItemAsJSON = JSON.stringify({ ...item, ...toUpdate });
+    window.localStorage.setItem(key, updatedItemAsJSON);
+  }
+
+  function remove() {
+    window.localStorage.removeItem(key);
+  }
+
+  return { get, set, merge, remove };
 }
 
 export function useLocalStorage(key: string) {
@@ -25,5 +29,10 @@ export function useLocalStorage(key: string) {
   function set(toUpdate: string) {
     window.localStorage.setItem(key, toUpdate);
   }
-  return { get, set };
+
+  function remove() {
+    window.localStorage.removeItem(key);
+  }
+
+  return { get, set, remove };
 }
