@@ -7,7 +7,7 @@ import { useForm } from "src/core/hooks";
 export const LoginForm = () => {
   const username = useForm();
   const password = useForm();
-  const { loginUser } = useContext(UserContext);
+  const { loginUser, error, loading } = useContext(UserContext);
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
@@ -21,7 +21,12 @@ export const LoginForm = () => {
       <form onSubmit={handleLogin}>
         <Input name="username" label="Usuário" {...username} />
         <Input name="password" type="password" label="Senha" {...password} />
-        <Button>Entrar</Button>
+        {loading ? (
+          <Button disabled>Carregando...</Button>
+        ) : (
+          <Button>Entrar</Button>
+        )}
+        {error && <p>{error}</p>}
       </form>
       <Link to="/login/create">Cadastrar</Link>
     </section>
