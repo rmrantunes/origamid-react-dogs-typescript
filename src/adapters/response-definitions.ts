@@ -5,6 +5,11 @@ export interface TokenResponse {
   user_nicename: string;
 }
 
+export interface ValidateTokenResponse {
+  code: "jwt_auth_valid_token" | "jwt_auth_invalid_token";
+  message: string;
+}
+
 export interface User {
   email: string;
   id: number;
