@@ -1,6 +1,6 @@
 export const API_URL = "https://dogsapi.origamid.dev/json";
 
-export function TOKEN_POST_FETCH_CONFIG(body: any) {
+export function GET_TOKEN_FETCH_CONFIG(body: any) {
   return {
     url: API_URL + "/jwt-auth/v1/token",
     options: {
@@ -11,7 +11,17 @@ export function TOKEN_POST_FETCH_CONFIG(body: any) {
   };
 }
 
-export function USER_GET_FETCH_CONFIG(token: string) {
+export function VALIDATE_TOKEN_FETCH_CONFIG(token: string) {
+  return {
+    url: API_URL + "/jwt-auth/v1/token/validate",
+    options: {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token },
+    },
+  };
+}
+
+export function GET_USER_FETCH_CONFIG(token: string) {
   return {
     url: API_URL + "/api/user",
     options: {
