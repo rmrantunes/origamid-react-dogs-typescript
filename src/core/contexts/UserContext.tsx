@@ -11,7 +11,7 @@ import { useLocalStorage } from "src/core/hooks";
 
 export interface UserContextValue {
   user: User;
-  login: boolean;
+  login: boolean | null;
   loading: boolean;
   error: string | null;
   loginUser(username: string, password: string): Promise<void>;
@@ -24,7 +24,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const localStorageToken = useLocalStorage("token");
 
   const [user, setUser] = useState({} as User);
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const history = useHistory();
@@ -40,7 +40,7 @@ export const UserProvider: React.FC = ({ children }) => {
         setLoading(true);
 
         const token = localStorageToken.get();
-        if (!token) return;
+        if (!token) return setLogin(false);
 
         const { url, options } = VALIDATE_TOKEN_FETCH_CONFIG(token);
         const response = await fetch(url, options);
