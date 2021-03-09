@@ -1,7 +1,9 @@
 export function useJSONLocalStorage<T = {}>(key: string) {
   function get() {
-    const item = JSON.parse(window.localStorage.getItem(key) as string);
-    return item as T;
+    const item: T | null = JSON.parse(
+      window.localStorage.getItem(key) as string
+    );
+    return item;
   }
 
   function set(toUpdate: Partial<T>) {
