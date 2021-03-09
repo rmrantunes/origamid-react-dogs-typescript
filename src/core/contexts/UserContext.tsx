@@ -21,12 +21,13 @@ export interface UserContextValue {
 export const UserContext = createContext({} as UserContextValue);
 
 export const UserProvider: React.FC = ({ children }) => {
+  const localStorageToken = useLocalStorage("token");
+
   const [user, setUser] = useState({} as User);
   const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const history = useHistory();
-  const localStorageToken = useLocalStorage("token");
 
   const redirectTo = (path: string) => {
     history.push(path);
