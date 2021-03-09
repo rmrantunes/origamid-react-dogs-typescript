@@ -1,8 +1,11 @@
 import { FormEvent, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Input, Button } from "src/core/components";
+import { Input, Button, ErrorMessage } from "src/core/components";
 import { UserContext } from "src/core/contexts";
 import { useForm } from "src/core/hooks";
+
+import styles from "./LoginForm.module.css";
+import stylesBtn from "src/core/components/Forms/Button.module.css";
 
 export const LoginForm = () => {
   const username = useForm();
@@ -16,9 +19,9 @@ export const LoginForm = () => {
   }
 
   return (
-    <section>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+    <section className="animeLeft">
+      <h1 className="title">Login</h1>
+      <form onSubmit={handleLogin} className={styles.form}>
         <Input name="username" label="Usuário" {...username} />
         <Input name="password" type="password" label="Senha" {...password} />
         {loading ? (
@@ -26,9 +29,20 @@ export const LoginForm = () => {
         ) : (
           <Button>Entrar</Button>
         )}
-        {error && <p>{error}</p>}
+        {error && <ErrorMessage {...{ error }} />}
       </form>
-      <Link to="/login/create">Cadastrar</Link>
+
+      <Link to="/login/forgot-password" className={styles.forgotPassword}>
+        Esqueci a senha
+      </Link>
+
+      <div className={styles.signUp}>
+        <h2 className={styles.subtitle}>Cadastre-se</h2>
+        <p>Ainda não possui conta? Cadastre-se no site.</p>
+        <Link to="/login/create" className={stylesBtn.button}>
+          Cadastrar
+        </Link>
+      </div>
     </section>
   );
 };
