@@ -1,19 +1,17 @@
 export function useJSONLocalStorage<T = {}>(key: string) {
   function get() {
-    const item: T | null = JSON.parse(
-      window.localStorage.getItem(key) as string
-    );
+    const item: T | null = JSON.parse(window.localStorage.getItem(key)!);
     return item;
   }
 
-  function set(toUpdate: Partial<T>) {
-    const updatedItemAsJSON = JSON.stringify(toUpdate);
+  function set(valueToAssign: T) {
+    const updatedItemAsJSON = JSON.stringify(valueToAssign);
     window.localStorage.setItem(key, updatedItemAsJSON);
   }
 
-  function merge(toUpdate: Partial<T>) {
+  function merge(valueToUpdate: Partial<T>) {
     const item = get();
-    const updatedItemAsJSON = JSON.stringify({ ...item, ...toUpdate });
+    const updatedItemAsJSON = JSON.stringify({ ...item, ...valueToUpdate });
     window.localStorage.setItem(key, updatedItemAsJSON);
   }
 
@@ -28,8 +26,9 @@ export function useLocalStorage(key: string) {
   function get() {
     return window.localStorage.getItem(key);
   }
-  function set(toUpdate: string) {
-    window.localStorage.setItem(key, toUpdate);
+  
+  function set(valueToAssign: string) {
+    window.localStorage.setItem(key, valueToAssign);
   }
 
   function remove() {
