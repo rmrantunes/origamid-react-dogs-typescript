@@ -1,13 +1,15 @@
 import { FormEvent, useContext } from "react";
 import { CREATE_USER_FETCH_CONFIG } from "src/adapters";
-import { Input, Button } from "src/core/components";
+import { Input, Button, ErrorMessage } from "src/core/components";
 import { UserContext } from "src/core/contexts";
-import { useForm } from "src/core/hooks";
+import { useFetch, useForm } from "src/core/hooks";
 
 export const LoginCreate = () => {
   const username = useForm();
   const email = useForm("email");
   const password = useForm();
+
+  const { loading, error, request } = useFetch();
 
   const { loginUser } = useContext(UserContext);
 
@@ -20,8 +22,8 @@ export const LoginCreate = () => {
       password: password.value,
     });
 
-    const createUserResponse = await fetch(url, options);
-    if (!createUserResponse.ok) return;
+    const { response } = await request(url, options);
+    if (!response?.ok) return;
 
     loginUser(username.value, password.value);
   }
@@ -33,7 +35,10 @@ export const LoginCreate = () => {
         <Input label="Usuário" name="username" {...username} />
         <Input label="Email" type="email" name="email" {...email} />
         <Input label="Senha" type="password" name="password" {...password} />
-        <Button>Cadastrar</Button>
+        <Button disabled={loading}>
+          {loading ? "Cadastrando" : "Cadastrar"}
+        </Button>
+        {error && <ErrorMessage {...{ error }} />}
       </form>
     </section>
   );
