@@ -1,4 +1,4 @@
-export const API_URL = "https://dogsapi.origamid.dev/json";
+import { API_URL } from "./endpoints";
 
 export function GET_TOKEN_FETCH_CONFIG(body: any) {
   return {
