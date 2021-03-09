@@ -76,7 +76,7 @@ export const UserProvider: React.FC = ({ children }) => {
       const { url, options } = GET_TOKEN_FETCH_CONFIG({ username, password });
 
       const response = await fetch(url, options);
-      if (!response.ok) throw new Error(response.statusText);
+      if (!response.ok) throw new Error("Usuário inválido");
       const { token }: TokenResponse = await response.json();
 
       localStorageToken.set(token);
