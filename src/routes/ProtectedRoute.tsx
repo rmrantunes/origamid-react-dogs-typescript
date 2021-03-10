@@ -1,23 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Redirect } from "react-router";
-import { UserContext } from "src/core/contexts";
 
 interface ProtectedRouteProps {
   redirectPath?: string;
-  condition?: boolean;
+  /** Null for idle state. For example: when getting token on localStorage */
+  condition: boolean | null;
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   children,
   redirectPath,
+  condition,
 }) => {
-  const { login } = useContext(UserContext);
-
-  const path = redirectPath || "/";
-  const hasAccess = login === true;
-  const forbiddenAccess = login === false;
+  const hasAccess = condition === true;
+  const forbiddenAccess = condition === false;
 
   if (hasAccess) return <>{children}</>;
-  if (forbiddenAccess) return <Redirect to={path} />;
+  if (forbiddenAccess) return <Redirect to={redirectPath || "/"} />;
   return <></>;
 };
