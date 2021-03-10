@@ -8,6 +8,7 @@ interface ValidationType {
 interface Validation {
   email: ValidationType;
   password: ValidationType;
+  number: ValidationType;
 }
 
 type ValidationTypes = keyof Validation;
@@ -21,6 +22,10 @@ const validation: Validation = {
     // TO DO: See a better regex, this one seems not to work properly
     regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
     message: "Coloque 8 caracteres, contendo pelo menos 1 número, 1 letra",
+  },
+  number: {
+    regex: /^\d+$/,
+    message: "Utilize apenas números",
   },
 };
 
@@ -37,7 +42,7 @@ export function useForm(typeForValidation?: ValidationTypes | false) {
     if (
       typeForValidation !== undefined &&
       validation[typeForValidation] &&
-      !validation.email.regex.test(value)
+      !validation[typeForValidation].regex.test(value)
     ) {
       setError(validation[typeForValidation].message);
       return false;
