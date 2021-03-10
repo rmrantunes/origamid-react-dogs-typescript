@@ -1,3 +1,9 @@
+import { Feed } from "src/core/components";
+
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <section className="container mainContainer">
+      <Feed />
+    </section>
+  );
 };
