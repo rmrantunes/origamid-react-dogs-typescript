@@ -11,7 +11,7 @@ interface Validation {
   number: ValidationType;
 }
 
-type ValidationTypes = keyof Validation;
+type KindOfValidation = keyof Validation;
 
 const validation: Validation = {
   email: {
@@ -29,22 +29,22 @@ const validation: Validation = {
   },
 };
 
-export function useForm(typeForValidation?: ValidationTypes | false) {
+export function useForm(kindOfValidation?: KindOfValidation | false) {
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>("");
 
   function validate(value: string) {
-    if (typeForValidation === false) return true;
+    if (kindOfValidation === false) return true;
     if (value.length === 0) {
       setError("Preencha um valor");
       return false;
     }
     if (
-      typeForValidation !== undefined &&
-      validation[typeForValidation] &&
-      !validation[typeForValidation].regex.test(value)
+      kindOfValidation !== undefined &&
+      validation[kindOfValidation] &&
+      !validation[kindOfValidation].regex.test(value)
     ) {
-      setError(validation[typeForValidation].message);
+      setError(validation[kindOfValidation].message);
       return false;
     }
     setError(null);
