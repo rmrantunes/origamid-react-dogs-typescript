@@ -28,3 +28,8 @@ export interface Photo {
   title: string;
   total_comments: string;
 }
+
+export interface PhotoWithComments {
+  photo: Photo;
+  comments: string[];
+}

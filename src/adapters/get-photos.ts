@@ -20,3 +20,13 @@ export function GET_PHOTOS_FETCH_CONFIG({
     },
   };
 }
+
+export function GET_PHOTO_WITH_COMMENTS_FETCH_CONFIG(id: number) {
+  return {
+    url: API_URL + `/api/photo/${id}`,
+    options: {
+      method: "GET",
+      cache: "no-store",
+    },
+  };
+}
