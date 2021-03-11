@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router";
-import { ROOT } from "src/routes/paths";
+import { HOME } from "src/routes/paths";
 
 interface ProtectedRouteProps {
   redirectPath?: string;
@@ -20,6 +20,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const forbiddenAccess = condition === false;
 
   if (hasAccess) return <>{children}</>;
-  if (forbiddenAccess) return <Redirect to={redirectPath || ROOT} />;
+  if (forbiddenAccess) return <Redirect to={redirectPath || HOME} />;
   return <></>;
 };
