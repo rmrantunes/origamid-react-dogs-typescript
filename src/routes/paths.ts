@@ -11,7 +11,6 @@ export const LOGIN_PATHS = {
 export const MY_ACCOUNT = "/my-account";
 
 export const MY_ACCOUNT_PATHS = {
-  MY_PHOTOS: MY_ACCOUNT,
   POST_PHOTO: MY_ACCOUNT + "/post-photo",
   STATS: MY_ACCOUNT + "/stats",
 };
