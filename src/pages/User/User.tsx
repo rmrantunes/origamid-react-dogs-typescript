@@ -5,16 +5,16 @@ import {
   UserPhotoPost,
   UserStats,
 } from "src/core/components";
-import { PROFILE_PATHS } from "src/routes/paths";
+import { MY_ACCOUNT_PATHS } from "src/routes/paths";
 
 export const User = () => {
   return (
     <section className="container">
       <UserHeader />
       <Switch>
-        <Route path={PROFILE_PATHS.MY_PHOTOS} exact component={Feed} />
-        <Route path={PROFILE_PATHS.POST_PHOTO} component={UserPhotoPost} />
-        <Route path={PROFILE_PATHS.STATS} component={UserStats} />
+        <Route path={MY_ACCOUNT_PATHS.MY_PHOTOS} exact component={Feed} />
+        <Route path={MY_ACCOUNT_PATHS.POST_PHOTO} component={UserPhotoPost} />
+        <Route path={MY_ACCOUNT_PATHS.STATS} component={UserStats} />
       </Switch>
     </section>
   );

@@ -8,7 +8,7 @@ import {
   useLocalStorage,
   useHistoryFunctions,
 } from "src/core/hooks";
-import { PROFILE } from "src/routes/paths";
+import { MY_ACCOUNT } from "src/routes/paths";
 
 import styles from "./UserPhotoPost.module.css";
 
@@ -45,7 +45,7 @@ export const UserPhotoPost = () => {
 
     const { response } = await request(url, options);
 
-    if (response?.ok) redirectTo(PROFILE);
+    if (response?.ok) redirectTo(MY_ACCOUNT);
   }
 
   function handleIMGChange({ target }: React.ChangeEvent<HTMLInputElement>) {

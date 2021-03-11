@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 
 import { ReactComponent as Dogs } from "src/assets/dogs.svg";
 import { UserContext } from "src/core/contexts";
-import { HOME, PROFILE, LOGIN } from "src/routes/paths";
+import { HOME, MY_ACCOUNT, LOGIN } from "src/routes/paths";
 
 export const Header = () => {
   const { user } = useContext(UserContext);
@@ -16,7 +16,7 @@ export const Header = () => {
           <Dogs />
         </Link>
         {user.nome && (
-          <Link to={PROFILE} className={styles.login}>
+          <Link to={MY_ACCOUNT} className={styles.login}>
             {user.nome}
           </Link>
         )}

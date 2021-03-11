@@ -7,14 +7,14 @@ import {
   LoginResetPasswowd,
 } from "src/core/components";
 import { UserContext } from "src/core/contexts";
-import { LOGIN, LOGIN_PATHS, PROFILE } from "src/routes/paths";
+import { LOGIN, LOGIN_PATHS, MY_ACCOUNT } from "src/routes/paths";
 
 import styles from "./Login.module.css";
 
 export const Login = () => {
   const { login } = useContext(UserContext);
 
-  if (login === true) return <Redirect to={PROFILE} />;
+  if (login === true) return <Redirect to={MY_ACCOUNT} />;
 
   return (
     <section className={styles.login}>

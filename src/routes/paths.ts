@@ -8,10 +8,14 @@ export const LOGIN_PATHS = {
   RESET_PASSWORD: LOGIN + "/reset-password",
 };
 
-export const PROFILE = "/profile";
+export const MY_ACCOUNT = "/my-account";
 
-export const PROFILE_PATHS = {
-  MY_PHOTOS: PROFILE,
-  POST_PHOTO: PROFILE + "/post-photo",
-  STATS: PROFILE + "/stats",
+export const MY_ACCOUNT_PATHS = {
+  MY_PHOTOS: MY_ACCOUNT,
+  POST_PHOTO: MY_ACCOUNT + "/post-photo",
+  STATS: MY_ACCOUNT + "/stats",
 };
+
+export const PHOTO = "/photo";
+
+export const PROFILE = "/profile";

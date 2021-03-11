@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { UserContext } from "src/core/contexts";
 import { useMedia } from "src/core/hooks";
+import { MY_ACCOUNT, MY_ACCOUNT_PATHS } from "src/routes/paths";
 
 import { ReactComponent as MyPhotos } from "src/assets/feed.svg";
 import { ReactComponent as Stats } from "src/assets/estatisticas.svg";
@@ -38,15 +39,18 @@ export const UserHeaderNav = () => {
           mobileMenu ? styles.navMobileActive : ""
         }`}
       >
-        <NavLink to="/profile" exact activeClassName={styles.active}>
+        <NavLink to={MY_ACCOUNT} exact activeClassName={styles.active}>
           <MyPhotos />
           {mobile && <span>Minhas fotos</span>}
         </NavLink>
-        <NavLink to="/profile/stats" activeClassName={styles.active}>
+        <NavLink to={MY_ACCOUNT_PATHS.STATS} activeClassName={styles.active}>
           <Stats />
           {mobile && <span>Estatísticas</span>}
         </NavLink>
-        <NavLink to="/profile/post-photo" activeClassName={styles.active}>
+        <NavLink
+          to={MY_ACCOUNT_PATHS.POST_PHOTO}
+          activeClassName={styles.active}
+        >
           <PostPhoto />
           {mobile && <span>Adicionar Foto</span>}
         </NavLink>
