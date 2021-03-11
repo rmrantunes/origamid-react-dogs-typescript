@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import {
   TokenResponse,
   GET_TOKEN_FETCH_CONFIG,
@@ -7,7 +6,7 @@ import {
   User,
   GET_USER_FETCH_CONFIG,
 } from "src/adapters";
-import { useLocalStorage } from "src/core/hooks";
+import { useHistoryFunctions, useLocalStorage } from "src/core/hooks";
 
 export interface UserContextValue {
   user: User;
@@ -27,11 +26,8 @@ export const UserProvider: React.FC = ({ children }) => {
   const [login, setLogin] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const history = useHistory();
 
-  const redirectTo = (path: string) => {
-    history.push(path);
-  };
+  const { redirectTo } = useHistoryFunctions();
 
   useEffect(() => {
     async function autoLogin() {

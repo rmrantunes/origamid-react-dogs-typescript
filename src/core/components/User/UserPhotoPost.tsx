@@ -1,9 +1,13 @@
 import { FormEvent, useState } from "react";
-import { useHistory } from "react-router";
 
 import { POST_PHOTO_FETCH_CONFIG } from "src/adapters";
 import { Input, Button, ErrorMessage } from "src/core/components";
-import { useForm, useFetch, useLocalStorage } from "src/core/hooks";
+import {
+  useForm,
+  useFetch,
+  useLocalStorage,
+  useHistoryFunctions,
+} from "src/core/hooks";
 import { PROFILE_PATH } from "src/routes/paths";
 
 import styles from "./UserPhotoPost.module.css";
@@ -14,7 +18,7 @@ interface Img {
 }
 
 export const UserPhotoPost = () => {
-  const history = useHistory();
+  const { redirectTo } = useHistoryFunctions();
 
   const nome = useForm();
   const peso = useForm("number");
@@ -41,7 +45,7 @@ export const UserPhotoPost = () => {
 
     const { response } = await request(url, options);
 
-    if (response?.ok) history.push(PROFILE_PATH);
+    if (response?.ok) redirectTo(PROFILE_PATH);
   }
 
   function handleIMGChange({ target }: React.ChangeEvent<HTMLInputElement>) {
