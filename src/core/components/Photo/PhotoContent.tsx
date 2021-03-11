@@ -19,7 +19,7 @@ export const PhotoContent = ({ photoWithComments }: PhotoContentProps) => {
       </div>
       <div className={styles.details}>
         <div>
-          <p>
+          <p className={styles.author}>
             <Link to={`${PROFILE}/${photo.author}`}>@{photo.author}</Link>
             <span className={styles.views}>{photo.acessos}</span>
           </p>
