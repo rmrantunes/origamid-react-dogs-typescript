@@ -11,7 +11,9 @@ export const Feed = () => {
 
   return (
     <div>
-      {modalPhoto && <FeedModal photoId={modalPhoto.id} />}
+      {modalPhoto && (
+        <FeedModal photoId={modalPhoto.id} {...{ setModalPhoto }} />
+      )}
       <FeedPhotos {...{ setModalPhoto }} />
     </div>
   );
