@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Redirect } from "react-router";
 import { HOME } from "src/routes/paths";
 
@@ -6,7 +6,7 @@ interface ProtectedRouteProps {
   redirectPath?: string;
   /** Null for idle state. For example: when getting token on localStorage */
   condition: boolean | null;
-  /** For idle state */
+  /** This will be shown when `condition` is `null` */
   fallback?: ReactNode;
 }
 
