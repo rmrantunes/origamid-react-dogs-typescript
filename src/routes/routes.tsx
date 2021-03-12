@@ -5,6 +5,7 @@ import { Home, Login, User } from "src/pages";
 
 import { ProtectedRoute } from "src/routes/ProtectedRoute";
 import { HOME, LOGIN, MY_ACCOUNT } from "src/routes/paths";
+import { Loading } from "src/core/components";
 
 export const Routes = () => {
   const { login } = useContext(UserContext);
@@ -12,7 +13,11 @@ export const Routes = () => {
     <Switch>
       <Route path={HOME} exact component={Home} />
       <Route path={LOGIN} component={Login} />
-      <ProtectedRoute condition={login} redirectPath={LOGIN}>
+      <ProtectedRoute
+        condition={login}
+        redirectPath={LOGIN}
+        fallback={<Loading />}
+      >
         <Route path={MY_ACCOUNT} component={User} />
       </ProtectedRoute>
     </Switch>
