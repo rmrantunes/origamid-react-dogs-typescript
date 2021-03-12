@@ -7,6 +7,7 @@ import {
   GET_USER_FETCH_CONFIG,
 } from "src/adapters";
 import { useHistoryFunctions, useLocalStorage } from "src/core/hooks";
+import { LOGIN, MY_ACCOUNT } from "src/routes/paths";
 
 export interface UserContextValue {
   user: User;
@@ -78,7 +79,7 @@ export const UserProvider: React.FC = ({ children }) => {
 
       localStorageToken.set(token);
       await getUser(token);
-      redirectTo("/profile");
+      redirectTo(MY_ACCOUNT);
     } catch (error) {
       setError(error.message);
       setLogin(false);
@@ -93,7 +94,7 @@ export const UserProvider: React.FC = ({ children }) => {
     setLoading(false);
     setLogin(false);
     localStorageToken.remove();
-    redirectTo("/login");
+    redirectTo(LOGIN);
   }
 
   return (
