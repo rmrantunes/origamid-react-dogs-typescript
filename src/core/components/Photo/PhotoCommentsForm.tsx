@@ -6,6 +6,8 @@ import { ErrorMessage } from "src/core/components";
 
 import { ReactComponent as Enviar } from "src/assets/enviar.svg";
 
+import styles from "./PhotoCommentsForm.module.css";
+
 interface PhotoCommentsFormProps {
   photoId: number;
   setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
@@ -39,8 +41,9 @@ export const PhotoCommentsForm = ({
   }
 
   return (
-    <form onSubmit={sendComment}>
+    <form onSubmit={sendComment} className={styles.form}>
       <textarea
+        className={styles.textarea}
         id="comment"
         name="comment"
         placeholder="Comemte..."
@@ -48,7 +51,7 @@ export const PhotoCommentsForm = ({
         onChange={({ target }) => setComment(target.value)}
       />
 
-      <button>
+      <button className={styles.button}>
         <Enviar />
       </button>
 
