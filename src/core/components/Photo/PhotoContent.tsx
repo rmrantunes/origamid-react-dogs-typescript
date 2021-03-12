@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { PhotoWithComments } from "src/adapters";
-import { PhotoComments, PhotoDelete } from "src/core/components";
+import { PhotoComments, PhotoDelete, Image } from "src/core/components";
 import { UserContext } from "src/core/contexts";
 import { PHOTO, PROFILE } from "src/routes/paths";
-
 import styles from "./PhotoContent.module.css";
 
 interface PhotoContentProps {
@@ -18,7 +17,7 @@ export const PhotoContent = ({ photoWithComments }: PhotoContentProps) => {
   return (
     <div className={styles.photo}>
       <div className={styles.img}>
-        <img src={photo.src} alt={photo.title} />
+        <Image src={photo.src} alt={photo.title} />
       </div>
       <div className={styles.details}>
         <div>

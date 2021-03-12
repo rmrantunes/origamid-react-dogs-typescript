@@ -1,5 +1,5 @@
 import { Photo } from "src/adapters";
-import { FeedChildrenSharedProps } from "src/core/components";
+import { FeedChildrenSharedProps, Image } from "src/core/components";
 
 import styles from "./FeedPhotosItem.module.css";
 
@@ -17,7 +17,7 @@ export const FeedPhotosItem = ({
 
   return (
     <li className={styles.photo} onClick={changePhotoInModal}>
-      <img src={photo.src} alt={photo.title} />
+      <Image src={photo.src} alt={photo.title} />
       <span className={styles.views}>{photo.acessos}</span>
     </li>
   );
