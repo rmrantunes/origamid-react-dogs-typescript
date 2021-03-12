@@ -1,7 +1,8 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 
 import { POST_PHOTO_FETCH_CONFIG } from "src/adapters";
 import { Input, Button, ErrorMessage } from "src/core/components";
+import { UserContext } from "src/core/contexts";
 import {
   useForm,
   useFetch,
@@ -18,6 +19,7 @@ interface Img {
 }
 
 export const UserPhotoPost = () => {
+  const { token } = useContext(UserContext);
   const { redirectTo } = useHistoryFunctions();
 
   const nome = useForm();
@@ -26,8 +28,6 @@ export const UserPhotoPost = () => {
   const [img, setImg] = useState({} as Img);
 
   const { error, loading, request } = useFetch();
-
-  const localStorageToken = useLocalStorage("token");
 
   async function postPhoto(event: FormEvent) {
     event.preventDefault();
@@ -39,8 +39,7 @@ export const UserPhotoPost = () => {
     formData.append("idade", idade.value);
 
     // TO DO with a WARNING: This ! isn't the best thing to do. Display an error if no token was provided
-    const token = localStorageToken.get()!;
-
+    if (!token) return;
     const { url, options } = POST_PHOTO_FETCH_CONFIG(formData, token);
 
     const { response } = await request(url, options);

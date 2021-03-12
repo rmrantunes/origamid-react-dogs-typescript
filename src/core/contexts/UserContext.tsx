@@ -16,6 +16,7 @@ export interface UserContextValue {
   error: string | null;
   loginUser(username: string, password: string): Promise<void>;
   logoutUser(): void;
+  token: string | null;
 }
 
 export const UserContext = createContext({} as UserContextValue);
@@ -27,6 +28,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const [login, setLogin] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   const { redirectTo } = useHistoryFunctions();
 
@@ -37,7 +39,13 @@ export const UserProvider: React.FC = ({ children }) => {
         setLoading(true);
 
         const token = localStorageToken.get();
-        if (!token) return setLogin(false);
+        if (!token) {
+          setLogin(false);
+          setToken(null);
+          return;
+        }
+
+        setToken(token);
 
         const { url, options } = VALIDATE_TOKEN_FETCH_CONFIG(token);
         const response = await fetch(url, options);
@@ -99,7 +107,7 @@ export const UserProvider: React.FC = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ loginUser, logoutUser, user, loading, login, error }}
+      value={{ loginUser, logoutUser, user, loading, login, error, token }}
     >
       {children}
     </UserContext.Provider>

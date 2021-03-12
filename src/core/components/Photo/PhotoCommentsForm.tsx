@@ -1,6 +1,7 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 
 import { Comment, SEND_COMMENT_FETCH_CONFIG } from "src/adapters";
+import { UserContext } from "src/core/contexts";
 import { useFetch, useLocalStorage } from "src/core/hooks";
 import { ErrorMessage } from "src/core/components";
 
@@ -18,15 +19,13 @@ export const PhotoCommentsForm = ({
   setComments,
 }: PhotoCommentsFormProps) => {
   const [comment, setComment] = useState("");
-  const localStorageToken = useLocalStorage("token");
+  const { token } = useContext(UserContext);
   const { request, data: newComment, error } = useFetch<Comment>();
 
   async function sendComment(event: FormEvent) {
     event.preventDefault();
 
-    const token = localStorageToken.get();
     if (!token) return;
-
     const { url, options } = SEND_COMMENT_FETCH_CONFIG(
       photoId,
       { comment },
