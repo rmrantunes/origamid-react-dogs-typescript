@@ -11,25 +11,36 @@ import { useFetch } from "src/core/hooks";
 
 import styles from "./FeedPhotos.module.css";
 
-interface FeedPhotosProps extends FeedChildrenSharedProps {}
+interface FeedPhotosProps extends FeedChildrenSharedProps {
+  page: number;
+  total?: number;
+  setInfinite: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export const FeedPhotos = ({ setModalPhoto }: FeedPhotosProps) => {
+export const FeedPhotos = ({
+  setModalPhoto,
+  total = 3,
+  page = 1,
+  userId = 0,
+  setInfinite,
+}: FeedPhotosProps) => {
   const { data: photos, loading, request, error } = useFetch<Photo[]>();
-
 
   useEffect(() => {
     async function fetchPhotos() {
       const { url, options } = GET_PHOTOS_FETCH_CONFIG({
-        page: 1,
-        total: 6,
-        user: 0,
+        page,
+        total,
+        user: userId,
       });
 
-      await request(url, options);
+      const { response, requestData } = await request(url, options);
+      if (response && response.ok && requestData.length < total)
+        setInfinite(false);
     }
 
     fetchPhotos();
-  }, [request]);
+  }, [request, userId, page, setInfinite, total]);
 
   if (error) return <ErrorMessage {...{ error }} />;
   if (loading) return <Loading />;
