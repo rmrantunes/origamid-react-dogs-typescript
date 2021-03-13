@@ -1,17 +1,16 @@
 import { ReactNode } from "react";
 import { Redirect, Route, RouteProps, Switch } from "react-router";
-import { HOME } from "src/routes/paths";
 
 interface ProtectedRouteProps extends RouteProps {
   redirectPath?: string;
-  /** Null for idle state. For example: when getting token on localStorage. */
+  /** @note `null` is for idle state. For example: when getting token on localStorage. */
   condition: boolean | null;
   /** This will be shown when @property `condition` is `null`. For expample: `<Loading />` */
   fallback?: ReactNode;
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  redirectPath,
+  redirectPath = "/",
   condition,
   fallback,
   ...routeProps
@@ -25,6 +24,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
         <Route {...routeProps} />
       </Switch>
     );
-  if (forbiddenAccess) return <Redirect to={redirectPath || HOME} />;
+  if (forbiddenAccess) return <Redirect to={redirectPath} />;
   return fallback ? <>{fallback}</> : <></>;
 };
