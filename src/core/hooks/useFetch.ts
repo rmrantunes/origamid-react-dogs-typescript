@@ -6,7 +6,7 @@ export function useFetch<T = any>() {
   const [loading, setLoading] = useState(false);
 
   const request = useCallback(
-    async (url: string, options: Record<any, any>) => {
+    async (url: string, options?: Record<any, any>) => {
       let response;
       let requestData;
 
