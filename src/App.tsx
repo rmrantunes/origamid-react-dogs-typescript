@@ -12,7 +12,9 @@ function App() {
       <BrowserRouter>
         <UserProvider>
           <Header />
-          <Routes />
+          <div style={{ minHeight: "100vh" }}>
+            <Routes />
+          </div>
           <Footer />
         </UserProvider>
       </BrowserRouter>
