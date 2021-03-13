@@ -22,3 +22,7 @@ export const PHOTO_PARAMS = {
 };
 
 export const PROFILE = "/profile";
+
+export const PROFILE_PARAMS = {
+  USER: "/:idOrUserame",
+};
