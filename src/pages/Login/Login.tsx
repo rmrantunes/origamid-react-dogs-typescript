@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { NotFound } from "src/pages";
 import {
   LoginForm,
   LoginCreate,
@@ -7,7 +8,7 @@ import {
   LoginResetPasswowd,
 } from "src/core/components";
 import { UserContext } from "src/core/contexts";
-import { LOGIN, LOGIN_PATHS, MY_ACCOUNT } from "src/routes/paths";
+import { ANY, LOGIN, LOGIN_PATHS, MY_ACCOUNT } from "src/routes/paths";
 
 import styles from "./Login.module.css";
 
@@ -30,6 +31,7 @@ export const Login = () => {
             path={LOGIN_PATHS.RESET_PASSWORD}
             component={LoginResetPasswowd}
           />
+          <Route path={ANY} component={NotFound} />
         </Switch>
       </div>
     </section>
