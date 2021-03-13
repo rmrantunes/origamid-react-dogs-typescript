@@ -4,7 +4,7 @@ interface GetPhotosFetchConfigProps {
   page: number;
   total: number;
   /** user = 0 if you want to fetch all users' photos */
-  user: number;
+  user: number | string;
 }
 
 export function GET_PHOTOS_FETCH_CONFIG({
