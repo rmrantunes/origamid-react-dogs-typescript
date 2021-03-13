@@ -21,6 +21,12 @@ export function GET_PHOTOS_FETCH_CONFIG({
   };
 }
 
+export function GET_PHOTO_FETCH_CONFIG(id: number) {
+  return {
+    url: API_URL + `/api/photo/${id}`,
+  };
+}
+
 export function GET_PHOTO_WITH_COMMENTS_FETCH_CONFIG(id: number) {
   return {
     url: API_URL + `/api/photo/${id}`,
