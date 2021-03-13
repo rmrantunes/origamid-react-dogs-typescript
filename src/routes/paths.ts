@@ -17,4 +17,8 @@ export const MY_ACCOUNT_PATHS = {
 
 export const PHOTO = "/photo";
 
+export const PHOTO_PARAMS = {
+  ID: "/:id",
+};
+
 export const PROFILE = "/profile";
