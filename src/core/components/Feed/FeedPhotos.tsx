@@ -21,7 +21,7 @@ export const FeedPhotos = ({
   setModalPhoto,
   total = 6,
   page = 1,
-  userId = 0,
+  idOrUserame = 0,
   setInfinite,
 }: FeedPhotosProps) => {
   const { data: photos, loading, request, error } = useFetch<Photo[]>();
@@ -31,7 +31,7 @@ export const FeedPhotos = ({
       const { url, options } = GET_PHOTOS_FETCH_CONFIG({
         page,
         total,
-        user: userId,
+        user: idOrUserame,
       });
 
       const { response, requestData } = await request(url, options);
@@ -40,7 +40,7 @@ export const FeedPhotos = ({
     }
 
     fetchPhotos();
-  }, [request, userId, page, setInfinite, total]);
+  }, [request, idOrUserame, page, setInfinite, total]);
 
   if (error) return <ErrorMessage {...{ error }} />;
   if (loading) return <Loading />;

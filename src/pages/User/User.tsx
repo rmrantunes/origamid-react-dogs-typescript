@@ -17,7 +17,7 @@ export const User = () => {
       <UserHeader />
       <Switch>
         <Route path={MY_ACCOUNT} exact>
-          <Feed userId={user.id} />
+          <Feed idOrUserame={user.id} />
         </Route>
         <Route path={MY_ACCOUNT_PATHS.POST_PHOTO} component={UserPhotoPost} />
         <Route path={MY_ACCOUNT_PATHS.STATS} component={UserStats} />

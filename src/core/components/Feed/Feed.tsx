@@ -4,14 +4,14 @@ import { FeedModal, FeedPhotos } from "src/core/components";
 
 export interface FeedChildrenSharedProps {
   setModalPhoto: React.Dispatch<React.SetStateAction<Photo | null>>;
-  userId?: number;
+  idOrUserame?: number | string;
 }
 
 interface FeedProps {
-  userId?: number;
+  idOrUserame?: number | string;
 }
 
-export const Feed = ({ userId }: FeedProps) => {
+export const Feed = ({ idOrUserame }: FeedProps) => {
   const [modalPhoto, setModalPhoto] = useState<Photo | null>(null);
   const [pages, setPages] = useState([1]);
   const [infinite, setInfinite] = useState(true);
@@ -46,7 +46,7 @@ export const Feed = ({ userId }: FeedProps) => {
       {pages.map((page) => {
         return (
           <FeedPhotos
-            {...{ setModalPhoto, userId, page, setInfinite }}
+            {...{ setModalPhoto, idOrUserame, page, setInfinite }}
             key={page}
           />
         );
