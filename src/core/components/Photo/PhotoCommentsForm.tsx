@@ -21,7 +21,7 @@ export const PhotoCommentsForm = ({
 }: PhotoCommentsFormProps) => {
   const [comment, setComment] = useState("");
   const { token } = useContext(UserContext);
-  const { request, data: newComment, error } = useFetch<Comment>();
+  const { request, error } = useFetch<Comment>();
 
   async function sendComment(event: FormEvent) {
     event.preventDefault();
@@ -33,9 +33,8 @@ export const PhotoCommentsForm = ({
       token
     );
 
-    const { response } = await request(url, options);
+    const { response, requestData: newComment } = await request(url, options);
     if (!response?.ok || !newComment) return;
-
     setComments((comments) => [...comments, newComment]);
     setComment("");
   }
@@ -49,7 +48,7 @@ export const PhotoCommentsForm = ({
         className={styles.textarea}
         id="comment"
         name="comment"
-        placeholder="Comemte..."
+        placeholder="Comente..."
         value={comment}
         onChange={({ target }) => setComment(target.value)}
       />
