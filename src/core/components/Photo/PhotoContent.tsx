@@ -1,21 +1,29 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { PhotoWithComments } from "src/adapters";
-import { PhotoComments, PhotoDelete, Image } from "src/core/components";
+import {
+  PhotoComments,
+  PhotoDelete,
+  Image,
+  PhotoChildrenSharedProps,
+} from "src/core/components";
 import { UserContext } from "src/core/contexts";
 import { PHOTO, PROFILE } from "src/routes/paths";
 import styles from "./PhotoContent.module.css";
 
-interface PhotoContentProps {
+interface PhotoContentProps extends PhotoChildrenSharedProps {
   photoWithComments: PhotoWithComments;
 }
 
-export const PhotoContent = ({ photoWithComments }: PhotoContentProps) => {
+export const PhotoContent = ({
+  photoWithComments,
+  single = false,
+}: PhotoContentProps) => {
   const { photo, comments } = photoWithComments;
   const { user } = useContext(UserContext);
 
   return (
-    <div className={styles.photo}>
+    <div className={`${styles.photo} ${single ? styles.single : ""}`}>
       <div className={styles.img}>
         <Image src={photo.src} alt={photo.title} />
       </div>
@@ -42,7 +50,7 @@ export const PhotoContent = ({ photoWithComments }: PhotoContentProps) => {
           </ul>
         </div>
       </div>
-      <PhotoComments photoId={photo.id} {...{ comments }} />
+      <PhotoComments photoId={photo.id} {...{ comments, single }} />
     </div>
   );
 };

@@ -2,14 +2,14 @@ import { FormEvent, useContext, useState } from "react";
 
 import { Comment, SEND_COMMENT_FETCH_CONFIG } from "src/adapters";
 import { UserContext } from "src/core/contexts";
-import { useFetch, useLocalStorage } from "src/core/hooks";
-import { ErrorMessage } from "src/core/components";
+import { useFetch } from "src/core/hooks";
+import { ErrorMessage, PhotoChildrenSharedProps } from "src/core/components";
 
 import { ReactComponent as Enviar } from "src/assets/enviar.svg";
 
 import styles from "./PhotoCommentsForm.module.css";
 
-interface PhotoCommentsFormProps {
+interface PhotoCommentsFormProps extends PhotoChildrenSharedProps {
   photoId: number;
   setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
 }
@@ -17,6 +17,7 @@ interface PhotoCommentsFormProps {
 export const PhotoCommentsForm = ({
   photoId,
   setComments,
+  single = false,
 }: PhotoCommentsFormProps) => {
   const [comment, setComment] = useState("");
   const { token } = useContext(UserContext);
@@ -40,7 +41,10 @@ export const PhotoCommentsForm = ({
   }
 
   return (
-    <form onSubmit={sendComment} className={styles.form}>
+    <form
+      onSubmit={sendComment}
+      className={`${styles.form} ${single ? styles.single : ""}`}
+    >
       <textarea
         className={styles.textarea}
         id="comment"
