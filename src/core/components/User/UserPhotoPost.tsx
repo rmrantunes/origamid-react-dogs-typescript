@@ -3,12 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import { POST_PHOTO_FETCH_CONFIG } from "src/adapters";
 import { Input, Button, ErrorMessage } from "src/core/components";
 import { UserContext } from "src/core/contexts";
-import {
-  useForm,
-  useFetch,
-  useLocalStorage,
-  useHistoryFunctions,
-} from "src/core/hooks";
+import { useForm, useFetch, useHistoryFunctions } from "src/core/hooks";
 import { MY_ACCOUNT } from "src/routes/paths";
 
 import styles from "./UserPhotoPost.module.css";
