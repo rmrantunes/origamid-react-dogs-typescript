@@ -19,7 +19,7 @@ interface FeedPhotosProps extends FeedChildrenSharedProps {
 
 export const FeedPhotos = ({
   setModalPhoto,
-  total = 3,
+  total = 6,
   page = 1,
   userId = 0,
   setInfinite,
