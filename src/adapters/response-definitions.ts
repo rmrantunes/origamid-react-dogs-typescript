@@ -39,3 +39,9 @@ export interface PhotoWithComments {
   photo: Photo;
   comments: Comment[];
 }
+
+export interface Stats {
+  id: number;
+  title: string;
+  acessos: string;
+}
