@@ -3,7 +3,7 @@
 This project I made using `Typescript`.
 Dogs is a social network made for dogs. Hmm... actually it was made for dogs owners. Try it out right now.
 
-![Dogs]("./dogs.jpg")
+![Dogs](dogs.jpg)
 
 ## Get started with this project
 
