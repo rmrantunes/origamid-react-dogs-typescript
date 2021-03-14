@@ -4,7 +4,7 @@ import { useEffect } from "react";
 export function useKeyUp(key: string, callback: () => any) {
   useEffect(() => {
     function handleKeyUp(event: KeyboardEvent) {
-      if (event.key === key) callback()();
+      if (event.key === key) callback();
     }
 
     window.addEventListener("keyup", handleKeyUp);
