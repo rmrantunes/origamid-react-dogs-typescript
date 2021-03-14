@@ -8,13 +8,13 @@ import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <UserProvider>
           <Header />
-          <div style={{ minHeight: "100vh" }}>
+          <main className="AppMain">
             <Routes />
-          </div>
+          </main>
           <Footer />
         </UserProvider>
       </BrowserRouter>
