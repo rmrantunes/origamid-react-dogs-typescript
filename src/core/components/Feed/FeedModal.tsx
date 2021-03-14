@@ -3,7 +3,7 @@ import {
   GET_PHOTO_WITH_COMMENTS_FETCH_CONFIG,
   PhotoWithComments,
 } from "src/adapters";
-import { useFetch } from "src/core/hooks";
+import { useFetch, useKeyUp } from "src/core/hooks";
 import {
   ErrorMessage,
   Loading,
@@ -34,6 +34,8 @@ export const FeedModal = ({ photoId, setModalPhoto }: FeedModalProps) => {
 
     fetchPhotoWithComments();
   }, [photoId, request]);
+
+  useKeyUp("Escape", () => setModalPhoto(null));
 
   function handleOutsideClick(e: React.MouseEvent) {
     if (e.target === e.currentTarget) setModalPhoto(null);
