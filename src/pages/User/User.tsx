@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { NotFound } from "src/pages";
 import {
   Feed,
+  Head,
   UserHeader,
   UserPhotoPost,
   UserStats,
@@ -15,6 +16,7 @@ export const User = () => {
 
   return (
     <section className="container">
+      <Head title="Minha conta" />
       <UserHeader />
       <Switch>
         <Route path={MY_ACCOUNT} exact>

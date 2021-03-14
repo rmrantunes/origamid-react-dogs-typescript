@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 
 import { POST_PHOTO_FETCH_CONFIG } from "src/adapters";
-import { Input, Button, ErrorMessage } from "src/core/components";
+import { Input, Button, ErrorMessage, Head } from "src/core/components";
 import { UserContext } from "src/core/contexts";
 import { useForm, useFetch, useHistoryFunctions } from "src/core/hooks";
 import { MY_ACCOUNT } from "src/routes/paths";
@@ -53,6 +53,7 @@ export const UserPhotoPost = () => {
 
   return (
     <section className={`${styles.photoPost} animeLeft`}>
+      <Head title="Poste sua foto" />
       <form onSubmit={postPhoto}>
         <Input label="Nome" name="nome" {...nome} />
         <Input label="Peso" name="peso" type="number" {...peso} />

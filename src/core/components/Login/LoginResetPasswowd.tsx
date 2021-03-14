@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { RESET_PASSWORD_FETCH_CONFIG } from "src/adapters";
-import { Input, Button, ErrorMessage } from "src/core/components";
+import { Input, Button, ErrorMessage, Head } from "src/core/components";
 import { useFetch, useForm, useHistoryFunctions } from "src/core/hooks";
 import { LOGIN } from "src/routes/paths";
 
@@ -35,6 +35,7 @@ export const LoginResetPasswowd = () => {
 
   return (
     <div>
+      <Head title="Nova senha" />
       <h1 className="title">Crie uma nova senha</h1>
       <form onSubmit={confirmNewPassword}>
         <Input

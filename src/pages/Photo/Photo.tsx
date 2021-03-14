@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { GET_PHOTO_FETCH_CONFIG, PhotoWithComments } from "src/adapters";
 import { useFetch } from "src/core/hooks";
-import { ErrorMessage, Loading, PhotoContent } from "src/core/components";
+import { ErrorMessage, Head, Loading, PhotoContent } from "src/core/components";
 
 export const Photo = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,6 +27,7 @@ export const Photo = () => {
   if (photoWithComments)
     return (
       <section className={"container mainContainer"}>
+        <Head title={photoWithComments.photo.title} />
         <PhotoContent single {...{ photoWithComments }} />
       </section>
     );

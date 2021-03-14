@@ -1,6 +1,6 @@
 import { FormEvent, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Input, Button, ErrorMessage } from "src/core/components";
+import { Input, Button, ErrorMessage, Head } from "src/core/components";
 import { UserContext } from "src/core/contexts";
 import { useForm } from "src/core/hooks";
 
@@ -20,6 +20,7 @@ export const LoginForm = () => {
 
   return (
     <section className="animeLeft">
+      <Head title="Login" />
       <h1 className="title">Login</h1>
       <form onSubmit={handleLogin} className={styles.form}>
         <Input name="username" label="Usuário" {...username} />

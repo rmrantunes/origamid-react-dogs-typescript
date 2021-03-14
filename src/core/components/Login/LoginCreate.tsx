@@ -1,6 +1,6 @@
 import { FormEvent, useContext } from "react";
 import { CREATE_USER_FETCH_CONFIG } from "src/adapters";
-import { Input, Button, ErrorMessage } from "src/core/components";
+import { Input, Button, ErrorMessage, Head } from "src/core/components";
 import { UserContext } from "src/core/contexts";
 import { useFetch, useForm } from "src/core/hooks";
 
@@ -30,6 +30,7 @@ export const LoginCreate = () => {
 
   return (
     <section className="animeLeft">
+      <Head title="Crie sua conta" />
       <h1 className="title">Cadastre-se</h1>
       <form onSubmit={createUser}>
         <Input label="Usuário" name="username" {...username} />

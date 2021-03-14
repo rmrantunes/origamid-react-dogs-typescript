@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { FORGOT_PASSWORD_FETCH_CONFIG } from "src/adapters";
-import { Input, Button, ErrorMessage } from "src/core/components";
+import { Input, Button, ErrorMessage, Head } from "src/core/components";
 import { useFetch, useForm } from "src/core/hooks";
 import { LOGIN_PATHS } from "src/routes/paths";
 
@@ -22,6 +22,7 @@ export const LoginForgotPassword = () => {
 
   return (
     <section>
+      <Head title="Perdeu a senha?" />
       <h1 className="title">Perdeu a senha?</h1>
       {data && <p style={{ color: "#4c1" }}>{data}</p>}
       {!data && (
