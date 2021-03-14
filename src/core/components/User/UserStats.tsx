@@ -1,15 +1,14 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { GET_STATS_FETCH_CONFIG, Stats } from "src/adapters";
-import {
-  Head,
-  Loading,
-  ErrorMessage,
-  UserStatsGraphs,
-} from "src/core/components";
+import { Head, Loading, ErrorMessage } from "src/core/components";
 import { UserContext } from "src/core/contexts";
 import { useFetch } from "src/core/hooks";
+const UserStatsGraphs = React.lazy(
+  () => import("src/core/components/User/UserStatsGraphs")
+);
 
 export const UserStats = () => {
+  console.log();
   const { token } = useContext(UserContext);
   const { data: stats, error, loading, request } = useFetch<Stats[]>();
 
@@ -29,7 +28,9 @@ export const UserStats = () => {
     return (
       <div>
         <Head title="Estatísticas" />
-        <UserStatsGraphs {...{ stats }} />
+        <React.Suspense fallback={<></>}>
+          <UserStatsGraphs {...{ stats }} />
+        </React.Suspense>
       </div>
     );
   return <></>;
