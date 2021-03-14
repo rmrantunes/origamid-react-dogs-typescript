@@ -34,7 +34,7 @@ export const LoginResetPasswowd = () => {
   }
 
   return (
-    <div>
+    <section className="animeLeft">
       <Head title="Nova senha" />
       <h1 className="title">Crie uma nova senha</h1>
       <form onSubmit={confirmNewPassword}>
@@ -49,6 +49,6 @@ export const LoginResetPasswowd = () => {
         </Button>
       </form>
       {error && <ErrorMessage {...{ error }} />}
-    </div>
+    </section>
   );
 };

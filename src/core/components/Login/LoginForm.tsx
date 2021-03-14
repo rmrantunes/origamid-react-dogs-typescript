@@ -30,7 +30,7 @@ export const LoginForm = () => {
         ) : (
           <Button>Entrar</Button>
         )}
-        {error && <ErrorMessage {...{ error }} />}
+        {error && <ErrorMessage {...{ error: "Dados incorretos." }} />}
       </form>
 
       <Link to="/login/forgot-password" className={styles.forgotPassword}>
